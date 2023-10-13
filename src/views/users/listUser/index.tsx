@@ -37,6 +37,7 @@ const ListUsers: React.FC<NewAccountProps> = () => {
     <>
       <PSTable
         title="Usuários Cadastrados"
+        refresh={user}
         data={user}
         loading={false}
         fields={usersTableFields}

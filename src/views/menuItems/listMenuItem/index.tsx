@@ -22,6 +22,7 @@ const ListMenuItem: React.FC<MenuItemsProps> = () => {
   return (
     <>
       <PSTable
+        refresh={menu}
         title="Itens do Menu Cadastrados"
         data={menu}
         loading={false}

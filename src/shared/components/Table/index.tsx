@@ -25,6 +25,7 @@ const PSTable: FC<TableProps> = (
     linkAddNewRow,
     scopedSlots,
     itemsPerPage,
+    refresh,
   },
   props: { onClick: () => void }
 ) => {
@@ -118,7 +119,7 @@ const PSTable: FC<TableProps> = (
                         type="button"
                         color="warning"
                         className="my-2 my-sm-0"
-                        onClick={() => document.location.reload()}
+                        onClick={refresh}
                       >
                         Refresh
                       </CButton>

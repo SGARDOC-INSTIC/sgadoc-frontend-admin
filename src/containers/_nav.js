@@ -25,21 +25,113 @@ const _nav = [
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Alunos",
-        to: "/users/list",
+        name: "Estudantes",
+        to: "/students/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Professores",
+        to: "/teacher/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Secretários",
+        to: "/students/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "DEI",
+        to: "/dei/list",
+      },
+    ],
+  },
+
+  {
+    _tag: "CSidebarNavItem",
+    name: "Cursos",
+    to: "/profile/list",
+    icon: "cil-user",
+  },
+
+  {
+    _tag: "CSidebarNavItem",
+    name: "Turmas",
+    to: "/profile/list",
+    icon: "cil-user",
+  },
+
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Inscrições",
+    route: "/gAdmin",
+    icon: "cil-notes",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Pendentes",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Aprovadas",
+        to: "/inscricoes/aprovadas",
       },
     ],
   },
 
   {
     _tag: "CSidebarNavDropdown",
-    name: "Páginas",
-    route: "/gAdmin",
-    icon: "cil-notes",
+    name: "Matrículas",
+    route: "",
+    icon: "cil-layers",
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Menu Itens",
+        name: "Pendentes",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Aprovadas",
+        to: "/menuItem/list",
+      },
+    ],
+  },
+
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["Requisição de Documentos"],
+  },
+
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Histórico com Notas",
+    route: "",
+    icon: "cil-layers",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Pendentes",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Aprovadas",
         to: "/menuItem/list",
       },
     ],
@@ -47,63 +139,79 @@ const _nav = [
 
   {
     _tag: "CSidebarNavDropdown",
-    name: "Produtos",
+    name: "Declaração de Estudos",
     route: "",
     icon: "cil-layers",
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Cursos",
-        to: "/curso/list",
+        name: "Pendentes",
+        to: "/menuItem/list",
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Módulos",
-        to: "/modulo/list",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Aulas",
-        to: "/aula/list",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Arquivos",
-        to: "/arquivo/list",
+        name: "Aprovadas",
+        to: "/menuItem/list",
       },
     ],
   },
 
   {
     _tag: "CSidebarNavDropdown",
-    name: "Provas",
+    name: "Histórico com Notas",
     route: "",
-    icon: "cil-people",
+    icon: "cil-layers",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Pendentes",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Aprovadas",
+        to: "/menuItem/list",
+      },
+    ],
   },
 
   {
     _tag: "CSidebarNavDropdown",
-    name: "Certificados",
+    name: "Requerimentos",
     route: "",
-    icon: "cil-people",
+    icon: "cil-layers",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: "Pendentes",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Rejeitadas",
+        to: "/menuItem/list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Aprovadas",
+        to: "/menuItem/list",
+      },
+    ],
   },
 
   {
-    _tag: "CSidebarNavItem",
-    name: "Ranking",
-    to: "/products/list",
-    icon: "cil-calculator",
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
-
-  {
-    _tag: "CSidebarNavItem",
-    name: "Configurações",
-    to: "/relatorios",
-    icon: "cil-settings",
+    _tag: "CSidebarNavTitle",
+    _children: ["Autenticação"],
   },
 
   {
@@ -114,15 +222,10 @@ const _nav = [
   },
 
   {
-    _tag: "CSidebarNavTitle",
-    _children: ["Autenticação"],
-  },
-
-  {
     _tag: "CSidebarNavItem",
-    name: "Sair da Conta",
-    to: "",
-    icon: "cil-user",
+    name: "Configurações",
+    to: "/relatorios",
+    icon: "cil-settings",
   },
 ];
 
