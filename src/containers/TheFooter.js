@@ -8,22 +8,22 @@ const TheFooter = () => {
     <CFooter fixed={false}>
       <div>
         <a
-          href="https://mundonathy.com/sobre"
+          href="https://sgardoc-instic.com/sobre"
           target="_blank"
           rel="noopener noreferrer"
         >
-          MUNDO NATHY
+          SGARDOC INSTIC
         </a>
         <span className="ml-1">&copy; {year}.</span>
       </div>
       <div className="mfs-auto">
         <span className="mr-1">Distribuído por</span>
         <a
-          href="https://mkti.com/sobre"
+          href="https://sgardoc-instic.com/sobre"
           target="_blank"
           rel="noopener noreferrer"
         >
-          MKTI
+          Margarida André
         </a>
       </div>
     </CFooter>

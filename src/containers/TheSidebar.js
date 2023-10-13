@@ -10,7 +10,6 @@ import {
   CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem,
-  CImg,
 } from "@coreui/react";
 
 // sidebar nav config
@@ -27,10 +26,16 @@ const TheSidebar = () => {
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <div className="c-avatar">
-          <CImg src="" className="c-avatar-img" alt="instic" />
+          <img
+            src="/logo.png"
+            className="c-avatar-img"
+            alt="instic"
+            width="80px"
+            height="80px"
+          />
         </div>
 
-        <h4 style={{ fontFamily: "Lobster" }}>INSTIC</h4>
+        <h6 style={{ marginLeft: "6px" }}> SGARDOC INSTIC</h6>
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement

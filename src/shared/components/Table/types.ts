@@ -8,4 +8,5 @@ export interface TableProps {
   border?: boolean;
   scopedSlots: any;
   itemsPerPage: number;
+  refresh: any;
 }

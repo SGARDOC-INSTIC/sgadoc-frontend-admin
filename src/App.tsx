@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import {
+  HashRouter,
+  Route,
+  Switch,
+  Redirect,
+  RouteProps,
+} from "react-router-dom";
 import ConfigRoutes from "./views/pages/config/routes";
 import GlobalStyles from "./global";
-import { CursosProvider } from "./hooks/useCurso";
-import { ModulosProvider } from "./hooks/useModulo";
-import { AulaProvider } from "./hooks/useAula";
-import { CertificadoProvider } from "./hooks/useCertificado";
-import { ModulosCursoProvider } from "./hooks/useModuloCurso";
-import { UsersProvider } from "./hooks/useUsers";
-import { MenuProvider } from "./hooks/useMenu";
-import { ArquivosProvider } from "./hooks/useArquivo";
+import { InscricaoProvider } from "./hooks/useInscricao";
+import { ProvinciaProvider } from "./hooks/useProvincia";
+import { MunicipioProvider } from "./hooks/useMunicipio";
+import { EstadoCivilProvider } from "./hooks/useEstadoCivil";
+import { GeneroProvider } from "./hooks/useGenero";
+import { CursoProvider } from "./hooks/useCurso";
+import { IsAuthenticated } from "./services/auth";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./google-fonts.css";
@@ -32,43 +37,64 @@ const Register = React.lazy(() => import("./views/pages/register/Register"));
 const Page404 = React.lazy(() => import("./views/pages/page404/Page404"));
 const Page500 = React.lazy(() => import("./views/pages/page500/Page500"));
 
+interface PrivateRouteProps extends RouteProps {
+  component: any;
+}
+
+const PrivateRoute = (props: PrivateRouteProps) => {
+  const { component: Component, ...rest } = props;
+
+  return (
+    <Route
+      {...rest}
+      render={(routeProps) =>
+        IsAuthenticated() ? (
+          <Component {...routeProps} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/404",
+              state: { from: routeProps.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
 class App extends Component {
   render() {
     return (
       <>
         <GlobalStyles />
-        <MenuProvider>
-          <UsersProvider>
-            <CertificadoProvider>
-              <CursosProvider>
-                <ModulosProvider>
-                  <ModulosCursoProvider>
-                    <AulaProvider>
-                      <ArquivosProvider>
-                        <HashRouter>
-                          <React.Suspense fallback={loading}>
-                            <Switch>
-                              <Route path="/config" component={ConfigRoutes} />
-                              <Route exact path="/login" component={Login} />
-                              <Route
-                                exact
-                                path="/register"
-                                component={Register}
-                              />
-                              <Route exact path="/404" component={Page404} />
-                              <Route exact path="/500" component={Page500} />
-                              <Route path="/" component={TheLayout} />
-                            </Switch>
-                          </React.Suspense>
-                        </HashRouter>
-                      </ArquivosProvider>
-                    </AulaProvider>
-                  </ModulosCursoProvider>
-                </ModulosProvider>
-              </CursosProvider>
-            </CertificadoProvider>
-          </UsersProvider>
-        </MenuProvider>
+        <CursoProvider>
+          <GeneroProvider>
+            <EstadoCivilProvider>
+              <MunicipioProvider>
+                <ProvinciaProvider>
+                  <InscricaoProvider>
+                    <HashRouter>
+                      <React.Suspense fallback={loading}>
+                        <Switch>
+                          <PrivateRoute
+                            path="/config"
+                            component={ConfigRoutes}
+                          />
+                          <Route exact path="/login" component={Login} />
+                          <Route exact path="/register" component={Register} />
+                          <Route exact path="/404" component={Page404} />
+                          <Route exact path="/500" component={Page500} />
+                          <PrivateRoute path="/" component={TheLayout} />
+                        </Switch>
+                      </React.Suspense>
+                    </HashRouter>
+                  </InscricaoProvider>
+                </ProvinciaProvider>
+              </MunicipioProvider>
+            </EstadoCivilProvider>
+          </GeneroProvider>
+        </CursoProvider>
       </>
     );
   }

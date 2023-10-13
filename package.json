@@ -51,6 +51,7 @@
     "formik": "^2.2.9",
     "formk": "^0.0.20",
     "framer-motion": "^4.1.17",
+    "js-file-downloader": "^1.1.25",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-app-polyfill": "^2.0.0",

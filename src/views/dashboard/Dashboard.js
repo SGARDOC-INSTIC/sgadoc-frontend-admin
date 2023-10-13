@@ -8,24 +8,19 @@ import {
   CCol,
   CProgress,
   CRow,
-  CImg,
 } from "@coreui/react";
 import {
   CTableRow,
   CTable,
   CTableBody,
   CTableHeaderCell,
-  CTableDataCell,
   CTableHead,
 } from "@coreui/react-pro";
 import React, { lazy } from "react";
-import { useUser } from "src/hooks/useUsers";
 import MainChartExample from "../charts/MainChartExample.js";
-import UploadImg from "src/assets/user-profile.png";
 
 const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
 const Dashboard = () => {
-  const { user } = useUser();
   return (
     <>
       <WidgetsDropdown />
@@ -60,7 +55,27 @@ const Dashboard = () => {
         <CCardFooter>
           <CRow className="text-center">
             <CCol md sm="12" className="mb-sm-2 mb-0">
-              <div className="text-muted">Usuários</div>
+              <div className="text-muted">Estudantes</div>
+              <strong>29.703 (40%)</strong>
+              <CProgress
+                className="progress-xs mt-2"
+                precision={1}
+                color="success"
+                value={40}
+              />
+            </CCol>
+            <CCol md sm="12" className="mb-sm-2 mb-0">
+              <div className="text-muted">Matrículas</div>
+              <strong>29.703 (40%)</strong>
+              <CProgress
+                className="progress-xs mt-2"
+                precision={1}
+                color="success"
+                value={40}
+              />
+            </CCol>
+            <CCol md sm="12" className="mb-sm-2 mb-0">
+              <div className="text-muted">Inscrições de exame de acesso</div>
               <strong>29.703 (40%)</strong>
               <CProgress
                 className="progress-xs mt-2"
@@ -70,7 +85,7 @@ const Dashboard = () => {
               />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0 d-md-down-none">
-              <div className="text-muted">Produtos</div>
+              <div className="text-muted">Requisição de documentos</div>
               <strong>24.093 Usuários (20%)</strong>
               <CProgress
                 className="progress-xs mt-2"
@@ -105,41 +120,7 @@ const Dashboard = () => {
                   <CTableHeaderCell>CPF</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
-              <CTableBody>
-                {user.map((item, index) => (
-                  <CTableRow v-for="item in tableItems" key={index}>
-                    <CTableDataCell className="text-center">
-                      <div
-                        className="c-avatar"
-                        style={{ width: "40px", height: "40px" }}
-                      >
-                        <CImg
-                          src={
-                            item.DS_CAMINHO_FOTO
-                              ? item.DS_CAMINHO_FOTO
-                              : UploadImg
-                          }
-                          className="c-avatar-img"
-                          alt="photo"
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>{item.DS_NOME}</div>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>{item.DS_EMAIL}</div>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>{item.DS_ENDERECO}</div>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>{item.DS_CPF}</div>
-                    </CTableDataCell>
-                  </CTableRow>
-                ))}
-              </CTableBody>
+              <CTableBody></CTableBody>
             </CTable>
           </CRow>
         </CCardBody>

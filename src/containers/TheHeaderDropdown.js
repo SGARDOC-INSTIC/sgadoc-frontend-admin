@@ -8,16 +8,24 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { useCookies } from "@react-smart/react-cookie-service";
+import { useHistory } from "react-router-dom";
 
 const TheHeaderDropdown = () => {
+  const history = useHistory();
+
+  const Logout = () => {
+    useCookies().deleteCookie("sgardoc-instic");
+    history.push("/login");
+  };
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
           <CImg
-            src="https://coreui.io/react/demo/4.0/free/static/media/4.3ddf28ab.jpg"
+            src="/logo.png"
             className="c-avatar-img"
-            alt="admin@zuri-box.com"
+            alt="admin@sgardoc-instic.com"
           />
         </div>
       </CDropdownToggle>
@@ -53,9 +61,9 @@ const TheHeaderDropdown = () => {
 
         <CDropdownItem divider />
 
-        <CDropdownItem>
-          <CIcon name="cil-lock-locked" className="mfe-2" />
-          Bloquear Conta
+        <CDropdownItem onClick={Logout}>
+          <CIcon name="cil-cursor" className="mfe-2" />
+          Sair da Conta
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

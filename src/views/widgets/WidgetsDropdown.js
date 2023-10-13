@@ -12,23 +12,17 @@ import {
 import CIcon from "@coreui/icons-react";
 import ChartLineSimple from "../charts/ChartLineSimple";
 import ChartBarSimple from "../charts/ChartBarSimple";
-import { useUser } from "src/hooks/useUsers";
 import { useCurso } from "src/hooks/useCurso";
-import { useMenu } from "src/hooks/useMenu";
-import { useCertificado } from "src/hooks/useCertificado";
 const WidgetsDropdown = () => {
-  const { user } = useUser();
   const { curso } = useCurso();
-  const { menu } = useMenu();
-  const { certificado } = useCertificado();
 
   return (
     <CRow>
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-primary"
-          header={user.length}
-          text="Usuários"
+          header={10}
+          text="Estudantes"
           footerSlot={
             <ChartLineSimple
               pointed
@@ -57,8 +51,8 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-info"
-          header={curso.length}
-          text="Cursos"
+          header={15}
+          text="Matrículas"
           footerSlot={
             <ChartLineSimple
               pointed
@@ -88,8 +82,8 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-warning"
-          header={menu.length}
-          text="Menu Itens"
+          header={curso.length}
+          text="Cursos"
           footerSlot={
             <ChartLineSimple
               className="mt-3"
@@ -122,8 +116,8 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-danger"
-          header={certificado.length}
-          text="Certificados"
+          header={curso.length}
+          text="Requisições"
           footerSlot={
             <ChartBarSimple
               className="mt-3 mx-3"

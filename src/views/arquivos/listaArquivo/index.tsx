@@ -34,6 +34,7 @@ const ListArquivo: React.FC<ArquivosProps> = () => {
   return (
     <>
       <PSTable
+        refresh={arquivo}
         title="Arquivos Cadastrados"
         data={arquivo}
         loading={false}
