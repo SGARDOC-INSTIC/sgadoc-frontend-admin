@@ -11,8 +11,14 @@ import {
   CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { useHistory } from "react-router-dom";
 
 const Page404 = () => {
+  const history = useHistory();
+  function back() {
+    history.push("/login");
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -53,7 +59,9 @@ const Page404 = () => {
           className="d-flex flex-row justify-content-center"
           style={{ marginTop: "2rem" }}
         >
-          <CButton color="info">Voltar para a página inicial</CButton>
+          <CButton color="info" onClick={back()}>
+            Voltar para a página inicial
+          </CButton>
         </div>
       </CContainer>
     </div>

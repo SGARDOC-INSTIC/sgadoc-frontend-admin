@@ -53,7 +53,7 @@ const PrivateRoute = (props: PrivateRouteProps) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/404",
+              pathname: "/login",
               state: { from: routeProps.location },
             }}
           />
@@ -83,7 +83,7 @@ class App extends Component {
                           />
                           <Route exact path="/login" component={Login} />
                           <Route exact path="/register" component={Register} />
-                          <Route exact path="/404" component={Page404} />
+                          <Route exact path="*" component={Page404} />
                           <Route exact path="/500" component={Page500} />
                           <PrivateRoute path="/" component={TheLayout} />
                         </Switch>
