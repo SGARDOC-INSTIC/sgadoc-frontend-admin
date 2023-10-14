@@ -1,21 +1,21 @@
 {
   "name": "sga-doc-admin",
   "version": "1.0",
-  "description": "SGA DOC Admin",
+  "description": "SGARDOC Admin",
   "author": {
-    "name": "DLine-Code",
-    "url": "https://dline-code.com",
-    "github": "https://github.com/dline-code",
-    "twitter": "https://twitter.com/dline-code"
+    "name": "Margarida-Andre",
+    "url": "https://Margarida-Andre",
+    "github": "https://github.com/Margarida-Andre",
+    "twitter": "https://twitter.com/Margarida-Andre"
   },
   "contributors": [
     {
-      "name": "DLine-Code Team",
-      "url": "https://github.com/orgs/dline-code/people"
+      "name": "Margarida-Andre",
+      "url": "https://github.com/orgs/Margarida-Andre"
     }
   ],
   "homepage": ".",
-  "copyright": "Copyright 2020-2021 DLine-Code Tam",
+  "copyright": "Copyright 2020-2021 Margarida-Andre",
   "license": "MIT",
   "private": true,
   "repository": {
@@ -31,7 +31,6 @@
     "@coreui/react-chartjs": "^1.1.0",
     "@coreui/react-pro": "^4.2.1",
     "@coreui/utils": "^1.3.1",
-    "@react-smart/react-cookie-service": "^1.0.8",
     "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.13",
