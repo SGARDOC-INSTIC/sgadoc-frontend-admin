@@ -21,17 +21,15 @@ import { AxiosError } from "axios";
 import { LoginForm } from "./validations";
 import { Formik } from "formik";
 import { loginProps } from "./type";
-import { useCookies } from "@react-smart/react-cookie-service";
 import "./styles.scss";
 
 const Login = () => {
   const history = useHistory();
-  const { setCookie } = useCookies();
 
   async function sessao({ email, senha }: loginProps) {
     try {
       const response = await api.post("/login", { email, senha });
-      setCookie("sgardoc-instic", response.data.token);
+      localStorage.setItem("sgardoc-instic", response.data.token);
       localStorage.setItem("usuario-logado", response.data.usuario);
       history.push("/dashboard");
     } catch (err) {

@@ -8,14 +8,13 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { useCookies } from "@react-smart/react-cookie-service";
 import { useHistory } from "react-router-dom";
 
 const TheHeaderDropdown = () => {
   const history = useHistory();
 
   const Logout = () => {
-    useCookies().deleteCookie("sgardoc-instic");
+    localStorage.removeItem("sgardoc-instic");
     history.push("/login");
   };
   return (

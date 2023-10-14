@@ -1,4 +1,3 @@
-import { useCookies } from "@react-smart/react-cookie-service";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const api = axios.create({
@@ -7,8 +6,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
-    const { getCookie } = useCookies();
-    const token = getCookie("sgardoc-instic");
+    const token = localStorage.getItem("sgardoc-instic");
     if (token) {
       (config.headers ??= {}).Authorization = `Bearer ${token}`;
     }
