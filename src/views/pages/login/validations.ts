@@ -1,10 +1,9 @@
-import * as yup from "yup";
+import * as Yup from "yup";
 
-export const LoginForm = yup.object().shape({
-  email: yup.string().email("Email Inválido").required("Email é obrigatório"),
-  senha: yup
-    .string()
-    .max(15, "O número máximo de caracteres é 15")
-    .min(8, "Digite pelo menos 8 caracteres")
-    .required("Senha é obrigatório"),
+export const LoginForm = Yup.object().shape({
+  email: Yup.string().email("E-mail inválido").required("Campo obrigatório"),
+  senha: Yup.string()
+    .required("campo obrigatório")
+    .min(8, "A senha deve ser no mínimo 8 caracteres")
+    .max(14, "A senha deve ser no máximo 14 caracteres"),
 });

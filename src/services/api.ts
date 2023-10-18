@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 export const api = axios.create({
-  baseURL: "https://sgardoc-instic-api.vercel.app",
+  baseURL: "https://sgardoc-backend-api.vercel.app",
 });
 
 api.interceptors.request.use(

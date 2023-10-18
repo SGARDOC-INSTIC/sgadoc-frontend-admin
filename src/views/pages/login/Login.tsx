@@ -6,7 +6,6 @@ import {
   CCardGroup,
   CCol,
   CContainer,
-  CForm,
   CInput,
   CInputGroup,
   CInputGroupText,
@@ -34,7 +33,11 @@ const Login = () => {
       history.push("/dashboard");
     } catch (err) {
       const error = err as AxiosError;
-      Swal.fire("Ops", "Email ou senha inválida, tente novamente", "error");
+      Swal.fire(
+        "Ops",
+        "Email ou senha inválida, tente novamente, por favor!",
+        "error"
+      );
       console.log(error.message);
     }
   }
@@ -52,9 +55,7 @@ const Login = () => {
                       email: "",
                       senha: "",
                     }}
-                    onSubmit={(values) => {
-                      console.log(values);
-                    }}
+                    onSubmit={sessao}
                     validationSchema={LoginForm}
                   >
                     {({
@@ -65,7 +66,7 @@ const Login = () => {
                       errors,
                       touched,
                     }) => (
-                      <CForm>
+                      <>
                         <h3 className="text-muted">Login</h3>
                         <p className="text-muted">Faça login em sua conta</p>
                         <CInputGroup className="mb-3">
@@ -80,15 +81,12 @@ const Login = () => {
                             value={values.email}
                             onBlur={handleBlur("email")}
                             onChange={handleChange("email")}
-                            className={
-                              touched.email && errors.email
-                                ? "input-error"
-                                : "none"
-                            }
+                            className={errors.email ? "input-error" : "none"}
                             autoComplete="email"
+                            required
                           />
                         </CInputGroup>
-                        {touched.email && errors.email ? (
+                        {errors.email ? (
                           <div className="errors">
                             <span className="icon">
                               <MdOutlineError />
@@ -108,15 +106,12 @@ const Login = () => {
                             value={values.senha}
                             onBlur={handleBlur("senha")}
                             onChange={handleChange("senha")}
-                            className={
-                              touched.senha && errors.senha
-                                ? "input-error"
-                                : "none"
-                            }
+                            className={errors.senha ? "input-error" : "none"}
                             autoComplete="senha"
+                            required
                           />
                         </CInputGroup>
-                        {touched.senha && errors.senha ? (
+                        {errors.senha ? (
                           <div className="errors">
                             <span className="icon">
                               <MdOutlineError />
@@ -129,7 +124,7 @@ const Login = () => {
                             <CButton
                               className="px-4"
                               color="primary"
-                              onClick={() => sessao(values)}
+                              onClick={handleSubmit}
                             >
                               Conecta-se
                             </CButton>
@@ -140,7 +135,7 @@ const Login = () => {
                             </CButton>
                           </CCol>
                         </CRow>
-                      </CForm>
+                      </>
                     )}
                   </Formik>
                 </CCardBody>

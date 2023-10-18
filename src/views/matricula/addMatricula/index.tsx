@@ -32,32 +32,7 @@ import { UploadFotografia } from "../upload/upload-fotografia";
 import { UploadComprovativo } from "../upload/upload-comprovativo";
 import api from "src/services/api";
 
-const AddInscricao: React.FC<InscricaoProps> = ({
-  provinciaId,
-  municipioId,
-  estadoCivilId,
-  generoId,
-  opcao1CursoId,
-  opcao2CursoId,
-  estadoId,
-  nome,
-  email,
-  dataNascimento,
-  numeroBi,
-  dataEmissaoBi,
-  validadeBi,
-  arquivoIdentificacao,
-  carregamentoBi,
-  certificadoEnsinoMedio,
-  carregamentoFotografia,
-  comprovativoPagamento,
-  telefonePrincipal,
-  telefoneAlternativo,
-  nomePai,
-  nomeMae,
-  criadoPor,
-  actualizadoPor,
-}: InscricaoData) => {
+const AddInscricao: React.FC<InscricaoProps> = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   //eslint-disable-next-line
   const [showElements, setShowElements] = React.useState(true);
@@ -73,9 +48,10 @@ const AddInscricao: React.FC<InscricaoProps> = ({
   const certificado = localStorage.getItem("firebase-certificado");
   const fotografia = localStorage.getItem("firebase-fotografia");
   const comprovativo = localStorage.getItem("firebase-comprovativo");
-  const [inscricao, setInscricao] = useState<InscricaoProps[]>([]);
+  const [matricula, setMatricula] = useState<InscricaoProps[]>([]);
 
   async function handleCreateNewRegister({
+    inscricaoExameAcessoId,
     provinciaId,
     municipioId,
     estadoCivilId,
@@ -102,7 +78,9 @@ const AddInscricao: React.FC<InscricaoProps> = ({
     actualizadoPor,
   }: InscricaoData) {
     try {
-      const result = await api.post("/inscricaoCreate", {
+      const getInscricaoId = localStorage.getItem("code-inscricao");
+      const result = await api.post(`/matriculaCreate/${getInscricaoId}`, {
+        inscricaoExameAcessoId,
         provinciaId,
         municipioId,
         estadoCivilId,
@@ -128,16 +106,16 @@ const AddInscricao: React.FC<InscricaoProps> = ({
         criadoPor,
         actualizadoPor,
       });
-      Swal.fire("Inscrito (a)!", "Inscrição feita com sucesso", "success");
-      setInscricao([...inscricao, result.data]);
+      Swal.fire("Matriculado (a)!", "Matrícula feita com sucesso", "success");
+      setMatricula([...matricula, result.data]);
       api
-        .get("/inscricoesAprovadas")
-        .then((response) => setInscricao(response.data));
+        .get("/matriculasAprovadas")
+        .then((response) => setMatricula(response.data));
       localStorage.removeItem("firebase-bi");
       localStorage.removeItem("firebase-certificado");
       localStorage.removeItem("firebase-fotografia");
       localStorage.removeItem("firebase-comprovativo");
-      history.push("/inscricoes/aprovadas");
+      history.push("/matriculas/aprovadas");
     } catch (err) {
       const error = err as AxiosError;
       Swal.fire("Ops!", "Ocorreu um erro, tente novamente", "error");
@@ -183,6 +161,8 @@ const AddInscricao: React.FC<InscricaoProps> = ({
             <CCardBody>
               <Formik
                 initialValues={{
+                  inscricaoExameAcessoId:
+                    localStorage.getItem("code-inscricao"),
                   provinciaId: "",
                   municipioId: "",
                   estadoCivilId: "",
@@ -723,7 +703,7 @@ const AddInscricao: React.FC<InscricaoProps> = ({
                       color="info"
                       onClick={handleCreateNewRegister}
                     >
-                      <CIcon name="cil-scrubber" /> Inscrever Estudante
+                      <CIcon name="cil-scrubber" /> Matricular Estudante
                     </CButton>
 
                     <CButton
