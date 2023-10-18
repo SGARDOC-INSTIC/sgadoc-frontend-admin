@@ -50,14 +50,14 @@ const _nav = [
     _tag: "CSidebarNavItem",
     name: "Cursos",
     to: "/profile/list",
-    icon: "cil-user",
+    icon: "cil-star",
   },
 
   {
     _tag: "CSidebarNavItem",
     name: "Turmas",
     to: "/profile/list",
-    icon: "cil-user",
+    icon: "cil-puzzle",
   },
 
   {
@@ -103,7 +103,7 @@ const _nav = [
       {
         _tag: "CSidebarNavItem",
         name: "Aprovadas",
-        to: "/menuItem/list",
+        to: "/matriculas/aprovadas",
       },
     ],
   },
@@ -117,7 +117,7 @@ const _nav = [
     _tag: "CSidebarNavDropdown",
     name: "Histórico com Notas",
     route: "",
-    icon: "cil-layers",
+    icon: "cil-file",
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -141,7 +141,7 @@ const _nav = [
     _tag: "CSidebarNavDropdown",
     name: "Declaração de Estudos",
     route: "",
-    icon: "cil-layers",
+    icon: "cil-file",
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -165,7 +165,7 @@ const _nav = [
     _tag: "CSidebarNavDropdown",
     name: "Histórico com Notas",
     route: "",
-    icon: "cil-layers",
+    icon: "cil-file",
     _children: [
       {
         _tag: "CSidebarNavItem",
@@ -189,7 +189,7 @@ const _nav = [
     _tag: "CSidebarNavDropdown",
     name: "Requerimentos",
     route: "",
-    icon: "cil-layers",
+    icon: "cil-file",
     _children: [
       {
         _tag: "CSidebarNavItem",

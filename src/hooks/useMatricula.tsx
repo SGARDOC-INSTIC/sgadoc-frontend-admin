@@ -1,45 +1,45 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import {
-  InscricaoProviderProps,
+  MatriculaProviderProps,
   InscricaoProps,
   InscricaoData,
-} from "../views/inscricoes-exame-acesso/type";
+} from "../views/matricula/type";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
 import { api } from "../services/api";
 
-type InscricaoContextData = {
-  inscricao: InscricaoProps[];
-  createInscricao: (data: InscricaoData) => Promise<void>;
+type MatriculaContextData = {
+  matricula: InscricaoProps[];
+  createMatricula: (data: InscricaoData) => Promise<void>;
   deleteInscricao: (data: InscricaoData) => Promise<void>;
   updateInscricao: (data: InscricaoData) => Promise<void>;
 };
 
-const InscricaoContext = createContext<InscricaoContextData>(
-  {} as InscricaoContextData
+const MatriculaContext = createContext<MatriculaContextData>(
+  {} as MatriculaContextData
 );
 
-export function InscricaoProvider({ children }: InscricaoProviderProps) {
-  const [inscricao, setInscricao] = useState<InscricaoProps[]>([]);
+export function MatriculaProvider({ children }: MatriculaProviderProps) {
+  const [matricula, setMatricula] = useState<InscricaoProps[]>([]);
 
   useEffect(() => {
     try {
       api
-        .get("/inscricoesAprovadas")
-        .then((response) => setInscricao(response.data));
+        .get("/matriculasAprovadas")
+        .then((response) => setMatricula(response.data));
     } catch (err) {
       const error = err as AxiosError;
       Swal.fire("Ops!", error.message, "error");
     }
   }, []);
 
-  async function createInscricao(data: InscricaoData) {
-    const result = await api.post("/inscricaoCreate", data);
-    Swal.fire("Inscrito (a)!", "Inscrição feita com sucesso", "success");
-    setInscricao([...inscricao, result.data]);
+  async function createMatricula(data: InscricaoData) {
+    const result = await api.post("/matriculaCreate", data);
+    Swal.fire("Inscrito (a)!", "Matrícula feita com sucesso", "success");
+    setMatricula([...matricula, result.data]);
     api
       .get("/inscricoesAprovadas")
-      .then((response) => setInscricao(response.data));
+      .then((response) => setMatricula(response.data));
     console.log(result.data);
   }
 
@@ -47,10 +47,10 @@ export function InscricaoProvider({ children }: InscricaoProviderProps) {
     const id = localStorage.getItem("data-inscricao");
     const result = await api.patch(`/inscricaoUpdate/${id}`, data);
     Swal.fire("Editado!", "Inscrição editada com sucesso", "success");
-    setInscricao([...inscricao, result.data]);
+    setMatricula([...matricula, result.data]);
     api
       .get("/inscricoesAprovadas")
-      .then((response) => setInscricao(response.data));
+      .then((response) => setMatricula(response.data));
     console.log(result.data);
   }
 
@@ -59,8 +59,8 @@ export function InscricaoProvider({ children }: InscricaoProviderProps) {
       const id = params?.id;
       const result = await api.get(`/inscricaoDelete${id}`);
       Swal.fire("Deletado!", "Inscrição excluída com sucesso.", "success");
-      const response = inscricao.filter((data) => data.id !== id);
-      setInscricao(response);
+      const response = matricula.filter((data) => data.id !== id);
+      setMatricula(response);
       console.log(result);
     } catch (err) {
       const error = err as AxiosError;
@@ -70,15 +70,15 @@ export function InscricaoProvider({ children }: InscricaoProviderProps) {
   }
 
   return (
-    <InscricaoContext.Provider
-      value={{ inscricao, createInscricao, updateInscricao, deleteInscricao }}
+    <MatriculaContext.Provider
+      value={{ matricula, createMatricula, updateInscricao, deleteInscricao }}
     >
       {children}
-    </InscricaoContext.Provider>
+    </MatriculaContext.Provider>
   );
 }
 
-export function useInscricao() {
-  const context = useContext(InscricaoContext);
+export function useMatricula() {
+  const context = useContext(MatriculaContext);
   return context;
 }

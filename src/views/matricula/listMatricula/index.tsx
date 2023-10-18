@@ -3,24 +3,19 @@ import { PSTable } from "../../../shared/components/Table/index";
 import { CButton, CCollapse, CCardBody, CImg } from "@coreui/react";
 import { inscricaoTableFields } from "./tableSettins/fields";
 import { InscricaoProps } from "../type";
-import { useInscricao } from "../../../hooks/useInscricao";
+import { useMatricula } from "../../../hooks/useMatricula";
 import UploadImg from "../../../assets/user-profile.png";
 import Moment from "react-moment";
 import { useHistory } from "react-router-dom";
 
-const ListInscricao: React.FC<InscricaoProps> = () => {
-  const { inscricao } = useInscricao();
+const ListMatricula: React.FC<InscricaoProps> = () => {
+  const { matricula } = useMatricula();
   const [details, setDetails] = useState<any[]>([]);
   const history = useHistory();
 
   async function update({ id }: InscricaoProps) {
     localStorage.setItem("data-inscricao", id);
     history.push(`/inscricao/edit/${id}`);
-  }
-
-  async function matricula({ id }: InscricaoProps) {
-    localStorage.setItem("code-inscricao", id);
-    history.push(`/matricula/add/${id}`);
   }
 
   const toggleDetails = (index: any) => {
@@ -37,9 +32,9 @@ const ListInscricao: React.FC<InscricaoProps> = () => {
   return (
     <>
       <PSTable
-        title="Inscrições de Exame de Acesso"
-        refresh={inscricao}
-        data={inscricao}
+        title="Matrículas"
+        refresh={matricula}
+        data={matricula}
         loading={false}
         fields={inscricaoTableFields}
         itemsPerPage={5}
@@ -103,12 +98,7 @@ const ListInscricao: React.FC<InscricaoProps> = () => {
                   >
                     Editar
                   </CButton>
-                  <CButton
-                    size="sm"
-                    color="info"
-                    className="ml-1"
-                    onClick={() => matricula(item)}
-                  >
+                  <CButton size="sm" color="danger" className="ml-1">
                     Matricular
                   </CButton>
                 </CCardBody>
@@ -273,4 +263,4 @@ const ListInscricao: React.FC<InscricaoProps> = () => {
   );
 };
 
-export default ListInscricao;
+export default ListMatricula;

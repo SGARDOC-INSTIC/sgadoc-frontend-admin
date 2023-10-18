@@ -66,7 +66,7 @@ const PSTable: FC<TableProps> = (
                   id="SelectLm"
                   onChange={(e) => console.log(e)}
                 >
-                  <option value="null">Please select</option>
+                  <option value="null">Por favor, selecciona</option>
                   {fields?.map((item, index) => (
                     <option key={index} value={item}>
                       {item.label}

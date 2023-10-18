@@ -59,7 +59,7 @@ const Page404 = () => {
           className="d-flex flex-row justify-content-center"
           style={{ marginTop: "2rem" }}
         >
-          <CButton color="info" onClick={back()}>
+          <CButton color="info" onClick={back}>
             Voltar para a página inicial
           </CButton>
         </div>
